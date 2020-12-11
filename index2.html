@@ -1,0 +1,215 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <title>Notas</title>
+        <meta charset="windows-1252">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap" rel="stylesheet">
+        
+        <style>
+            
+            .container{overflow: hidden}
+            .tab{float: left;}
+            .tab-2{margin-left: 50px}
+            .tab-2 input{display: block;margin-bottom: 10px}
+            tr{transition:all .25s ease-in-out}
+            tr:hover{background-color:#EEE;cursor: pointer}
+            
+
+
+            table tr td {
+                width: 130px;
+                text-align: center;
+                border: 2px solid black;
+            }
+
+            body{
+                font-family: 'JetBrains Mono', monospace;
+            }
+
+            table{
+                margin-top: 100px;
+            }
+
+            .container{
+                margin-left: 170px;
+            }
+
+            .tab-2 {
+                margin-left: 40%;
+                margin-top: 100px;
+            }
+
+
+
+            
+            
+        </style>
+        
+    </head>
+    <body>
+        
+        <div class="container">
+            <div class="tab tab-1">
+                <table id="table">
+                    <tr>
+                        <th>#</th>
+                        <th>Nome</th>
+                        <th>Lista / 5</th>
+                        <th>Trabalho / 5</th>
+                        <th>Prova</th>
+                        <th>Soma</th>
+                        <th>Média</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td class="nome">Maria</td>
+                        <td class="lista">5</td>
+                        <td class="trabalho">5</td>
+                        <td class="prova">10</td>
+                        <td class="soma">20</td>
+                        <td class="media">10</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td class="nome">Ana</td>
+                        <td class="lista">2</td>
+                        <td class="trabalho">1</td>
+                        <td class="prova">8</td>
+                        <td class="soma">11</td>
+                        <td class="media">5.5</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td class="nome">Carlos</td>
+                        <td class="lista">1</td>
+                        <td class="trabalho">1</td>
+                        <td class="prova">4</td>
+                        <td class="soma">6</td>
+                        <td class="media">3</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td class="nome">Pedro</td>
+                        <td class="lista">3</td>
+                        <td class="trabalho">1</td>
+                        <td class="prova">6</td>
+                        <td class="soma">10</td>
+                        <td class="media">5</td>
+                    </tr>
+                </table>
+            </div>
+            
+        </div>
+
+        <div class="tab tab-2">
+            Nome :<input type="text" name="nome" id="nome">
+            Lista :<input type="text" name="lista" id="lista">
+            Trabalho :<input type="number" name="prova" id="trabalho">
+            Prova :<input type="number" name="prova" id="prova">
+            
+            <button onclick="addHtmlTableRow();">Adicionar</button>
+            <button onclick="editHtmlTbleSelectedRow();">Editar</button>
+            <button onclick="removelinha();">Remover</button>
+        </div>
+        
+        <script>
+            
+            var rIndex,
+                table = document.getElementById("table");
+            
+            function checkEmptyInput()
+            {
+                var isEmpty = false,
+                    nome = document.getElementById("nome").value,
+                    lista = document.getElementById("lista").value,
+                    trabalho = document.getElementById("trabalho").value;
+                    prova = document.getElementById("prova").value;
+            
+            }
+            
+            function addHtmlTableRow()
+            {
+             
+                if(!checkEmptyInput()){
+                var newRow = table.insertRow(table.length),
+                    cell1 = newRow.insertCell(0)
+                    cell2 = newRow.insertCell(1),
+                    cell3 = newRow.insertCell(2),
+                    cell4 = newRow.insertCell(3),
+                    cell5 = newRow.insertCell(4),
+                    cell6 = newRow.insertCell(5),
+                    cell7 = newRow.insertCell(6),
+                    nome = document.getElementById("nome").value,
+                    lista = document.getElementById("lista").value,
+                    trabalho = document.getElementById("trabalho").value;
+                    prova = document.getElementById("prova").value;
+            
+                cell1.innerHTML = "6";
+                cell2.innerHTML = nome;
+                cell3.innerHTML = lista;
+                cell4.innerHTML = trabalho;
+                cell5.innerHTML = prova;
+                cell6.innerHTML = soma;
+                cell7.innerHTML = media;
+                selectedRowToInput();
+            }
+            }
+            
+            function selectedRowToInput()
+            {
+                
+                for(var i = 1; i < table.rows.length; i++)
+                {
+                    table.rows[i].onclick = function()
+                    {
+                      rIndex = this.rowIndex;
+                      document.getElementById("").value = this.cells[0].innerHTML;
+                      document.getElementById("nome").value = this.cells[1].innerHTML;
+                      document.getElementById("lista").value = this.cells[2].innerHTML;
+                      document.getElementById("trabalho").value = this.cells[3].innerHTML;
+                      document.getElementById("prova").value = this.cells[4].innerHTML;
+                      document.getElementById("soma").value = this.cells[5].innerHTML;
+                      document.getElementById("media").value = this.cells[6].innerHTML;
+                    };
+                }
+            }
+            selectedRowToInput();
+            
+            function editHtmlTbleSelectedRow()
+            {
+                var nome = document.getElementById("nome").value,
+                    lista = document.getElementById("lista").value,
+                    trabalho = document.getElementById("trabalho").value;
+                    prova = document.getElementById("prova").value;
+               if(!checkEmptyInput()){
+                table.rows[rIndex].cells[1].innerHTML = nome;
+                table.rows[rIndex].cells[1].innerHTML = lista;
+                table.rows[rIndex].cells[2].innerHTML = trabalho;
+                table.rows[rIndex].cells[3].innerHTML = prova;
+              }
+
+              function soma()
+            {
+                 var lista = document.getElementById("lista").value,
+                     trabalho = document.getElementById("trabalho").value;
+                     prova = document.getElementById("prova").value;
+                     soma = (lista+ trabalho+ prova);
+               
+              }
+            }
+            
+            function removelinha()
+            {
+                table.deleteRow(rIndex);
+                document.getElementById("nome").value = "";
+                document.getElementById("lista").value = "";
+                document.getElementById("trabalho").value = "";
+                document.getElementById("prova").value = "";
+
+            }
+        </script>
+        
+    </body>
+</html>
